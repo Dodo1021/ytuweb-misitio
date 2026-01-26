@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lic. Roberto García — Abogado | Derecho Civil, Familiar y Mercantil en Guadalajara</title>
+    <meta name="description" content="Abogado en Guadalajara con más de 12 años de experiencia en derecho civil, familiar, mercantil, laboral y penal. Primera consulta gratuita.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0e1a;
+            --bg-card: #111827;
+            --bg-card-hover: #1a2332;
+            --bg-section-alt: #0d1220;
+            --blue-primary: #1877F2;
+            --blue-light: #42a5f5;
+            --blue-glow: rgba(24, 119, 242, 0.3);
+            --blue-subtle: rgba(66, 165, 245, 0.1);
+            --gold: #c9a84c;
+            --gold-light: #e2c66d;
+            --text-white: #f0f2f5;
+            --text-gray: #9ca3af;
+            --text-gray-light: #d1d5db;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --border-blue: rgba(24, 119, 242, 0.2);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --shadow-blue: 0 4px 30px rgba(24, 119, 242, 0.15);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== DEMO BANNER ===== */
+        .demo-banner {
+            background: linear-gradient(135deg, var(--blue-primary), #1565c0);
+            padding: 10px 24px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+            position: relative;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .demo-banner a {
+            color: #fff;
+            text-decoration: underline;
+            font-weight: 700;
+            transition: opacity var(--transition);
+        }
+
+        .demo-banner a:hover { opacity: 0.85; }
+
+        .demo-banner .volver {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 12px;
+            font-size: 0.8rem;
+            transition: background var(--transition);
+        }
+
+        .demo-banner .volver:hover { background: rgba(255,255,255,0.35); }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(10, 14, 26, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 24px;
+            transition: box-shadow var(--transition);
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text-white);
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--blue-primary), var(--blue-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .nav-logo-icon svg { width: 22px; height: 22px; }
+
+        .nav-logo span {
+            color: var(--blue-light);
+            font-weight: 400;
+            font-size: 0.85rem;
+            display: block;
+            margin-top: -2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-gray);
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--blue-primary);
+            transition: width var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--text-white); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: var(--blue-primary) !important;
+            color: #fff !important;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            font-size: 0.88rem !important;
+            transition: background var(--transition), transform var(--transition) !important;
+        }
+
+        .nav-cta:hover {
+            background: #1565c0 !important;
+            transform: translateY(-1px);
+        }
+
+        .nav-cta::after { display: none !important; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-white);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding: 100px 0 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 50%, rgba(24, 119, 242, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 80% 30%, rgba(66, 165, 245, 0.06) 0%, transparent 50%),
+                linear-gradient(180deg, var(--bg-dark) 0%, #080c16 100%);
+            z-index: 0;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.03;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content { max-width: 560px; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue-subtle);
+            border: 1px solid var(--border-blue);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--blue-light);
+            margin-bottom: 28px;
+        }
+
+        .hero-badge svg { width: 16px; height: 16px; }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--blue-light), var(--blue-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero-tagline {
+            font-size: 1.15rem;
+            color: var(--text-gray-light);
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 480px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: all var(--transition);
+            font-family: inherit;
+        }
+
+        .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue-primary), #1565c0);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(24, 119, 242, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(24, 119, 242, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-white);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--blue-primary);
+            background: rgba(24, 119, 242, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-card {
+            background: linear-gradient(145deg, var(--bg-card), #0f1623);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue-primary), var(--blue-light), var(--gold));
+        }
+
+        .hero-card-scales {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--blue-primary), var(--blue-light));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 30px rgba(24, 119, 242, 0.25);
+        }
+
+        .hero-card-scales svg { width: 44px; height: 44px; }
+
+        .hero-card h3 {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .hero-card .card-title-sub {
+            text-align: center;
+            color: var(--gold-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero-card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .hero-card-info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-card-info-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--blue-light);
+            flex-shrink: 0;
+        }
+
+        .hero-card-info-item span {
+            font-size: 0.88rem;
+            color: var(--text-gray-light);
+        }
+
+        /* ===== SECTION COMMON ===== */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-alt {
+            background: var(--bg-section-alt);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--blue-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--blue-primary);
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===== ABOUT / PROFILE ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .about-text p {
+            color: var(--text-gray-light);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-text .highlight {
+            color: var(--blue-light);
+            font-weight: 600;
+        }
+
+        .about-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue-primary), var(--blue-light));
+            border-radius: 3px;
+            margin: 24px 0;
+        }
+
+        .about-quote {
+            font-style: italic;
+            color: var(--text-gray);
+            border-left: 3px solid var(--gold);
+            padding-left: 20px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            text-align: center;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue-primary), var(--blue-light));
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .stat-card:hover {
+            border-color: var(--border-blue);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-blue);
+        }
+
+        .stat-card:hover::before { opacity: 1; }
+
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--blue-subtle);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .stat-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--blue-light);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-white);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        /* ===== PRACTICE AREAS ===== */
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .area-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 36px 28px;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .area-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue-primary), var(--blue-light));
+            transform: scaleX(0);
+            transition: transform var(--transition);
+            transform-origin: left;
+        }
+
+        .area-card:hover {
+            border-color: var(--border-blue);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-blue);
+        }
+
+        .area-card:hover::before { transform: scaleX(1); }
+
+        .area-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(24, 119, 242, 0.15), rgba(66, 165, 245, 0.08));
+            border: 1px solid var(--border-blue);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22px;
+            transition: all var(--transition);
+        }
+
+        .area-card:hover .area-icon {
+            background: linear-gradient(135deg, var(--blue-primary), var(--blue-light));
+            border-color: transparent;
+            box-shadow: 0 6px 20px rgba(24, 119, 242, 0.3);
+        }
+
+        .area-icon svg {
+            width: 26px;
+            height: 26px;
+            color: var(--blue-light);
+            transition: color var(--transition);
+        }
+
+        .area-card:hover .area-icon svg { color: #fff; }
+
+        .area-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-white);
+        }
+
+        .area-card p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .area-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .area-tag {
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        /* ===== PROCESS ===== */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 48px;
+            left: 15%;
+            right: 15%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blue-primary), var(--blue-light), var(--blue-primary), transparent);
+            opacity: 0.3;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-number {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 24px;
+            background: var(--bg-card);
+            border: 2px solid var(--border-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--blue-light);
+            position: relative;
+            z-index: 1;
+            transition: all var(--transition);
+        }
+
+        .process-step:hover .process-number {
+            background: linear-gradient(135deg, var(--blue-primary), var(--blue-light));
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 8px 30px rgba(24, 119, 242, 0.35);
+            transform: scale(1.1);
+        }
+
+        .process-step h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .process-step p {
+            font-size: 0.92rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        .contact-form-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+        }
+
+        .contact-form-wrapper h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .contact-form-wrapper .form-intro {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-gray-light);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-white);
+            font-family: inherit;
+            font-size: 0.92rem;
+            transition: all var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue-primary);
+            box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%239ca3af' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 6l3.5 4 3.5-4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: var(--bg-card);
+            color: var(--text-white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--blue-primary), #1565c0);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(24, 119, 242, 0.35);
+        }
+
+        .btn-submit svg { width: 20px; height: 20px; }
+
+        .form-note {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .form-note svg { width: 14px; height: 14px; color: var(--gold); flex-shrink: 0; }
+
+        /* ===== LOCATION ===== */
+        .location-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .location-info h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .location-info .loc-subtitle {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .location-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .location-item-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--blue-subtle);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .location-item-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--blue-light);
+        }
+
+        .location-item-text strong {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .location-item-text span,
+        .location-item-text a {
+            font-size: 0.88rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .location-item-text a:hover { color: var(--blue-light); }
+
+        .map-wrapper {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-top: 16px;
+            height: 220px;
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: brightness(0.7) contrast(1.1) saturate(0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #070a14;
+            border-top: 1px solid var(--border-color);
+            padding: 48px 0 24px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-bottom: 36px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-brand .nav-logo {
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .footer-links h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-gray-light);
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--text-gray);
+            margin-bottom: 10px;
+            transition: color var(--transition);
+        }
+
+        .footer-links a:hover { color: var(--blue-light); }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-gray);
+        }
+
+        .footer-bottom a { color: var(--blue-light); }
+
+        /* ===== WHATSAPP FLOAT ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 9999;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all var(--transition);
+            animation: pulse-wa 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float svg { width: 30px; height: 30px; }
+
+        @keyframes pulse-wa {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6), 0 0 0 12px rgba(37, 211, 102, 0.1); }
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-6 { transition-delay: 0.6s; }
+
+        /* ===== MOBILE RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content { max-width: 100%; }
+            .hero-tagline { margin: 0 auto 36px; }
+            .hero-buttons { justify-content: center; }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-card { max-width: 360px; }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .areas-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section { padding: 70px 0; }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 320px;
+                height: 100vh;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 80px 32px 32px;
+                gap: 24px;
+                transition: right var(--transition);
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+                z-index: 1001;
+                border-left: 1px solid var(--border-color);
+            }
+
+            .nav-links.active { right: 0; }
+
+            .nav-links a { font-size: 1.05rem; }
+
+            .hamburger { display: flex; z-index: 1002; }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .mobile-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.6);
+                z-index: 1000;
+            }
+
+            .mobile-overlay.active { display: block; }
+
+            .hero { min-height: auto; padding: 60px 0; }
+            .hero-card { display: none; }
+
+            .process-grid { grid-template-columns: 1fr; gap: 40px; }
+            .process-grid::before { display: none; }
+
+            .areas-grid { grid-template-columns: 1fr; }
+
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+
+            .contact-form-wrapper { padding: 28px 20px; }
+
+            .footer-top { flex-direction: column; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .hero-buttons { flex-direction: column; align-items: stretch; }
+            .btn { justify-content: center; }
+            .demo-banner { font-size: 0.78rem; padding: 8px 16px; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        <span>Esta es una demo creada por <strong>&iquest;Y Tu Web?</strong> &mdash; &iquest;Quieres una p&aacute;gina as&iacute;?</span>
+        <a href="https://wa.me/5213312345678" target="_blank" rel="noopener">Cotiza gratis</a>
+        <a href="../index.html#demos" class="volver">&larr; Volver</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3l-8 9h5v9h6v-9h5z"/>
+                    </svg>
+                </div>
+                <div>
+                    Lic. Garc&iacute;a
+                    <span>Abogado</span>
+                </div>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about">Perfil</a>
+                <a href="#areas">Servicios</a>
+                <a href="#proceso">Proceso</a>
+                <a href="#contacto">Contacto</a>
+                <a href="https://wa.me/5213312345678" class="nav-cta" target="_blank" rel="noopener">Consulta Gratis</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menú de navegación">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-pattern"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    M&aacute;s de 12 a&ntilde;os de experiencia
+                </div>
+                <h1>
+                    Lic. Roberto<br>
+                    <span class="gradient-text">Garc&iacute;a</span>
+                </h1>
+                <p class="hero-subtitle">Abogado</p>
+                <p class="hero-tagline">Protegemos tus derechos con experiencia y compromiso. Asesor&iacute;a legal profesional en Guadalajara, Jalisco.</p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/5213312345678?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20gratuita" class="btn btn-primary" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Consulta gratuita
+                    </a>
+                    <a href="#areas" class="btn btn-outline">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                        &Aacute;reas de pr&aacute;ctica
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="hero-card-scales">
+                        <!-- Scales of Justice SVG -->
+                        <svg viewBox="0 0 64 64" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="32" y1="8" x2="32" y2="56"/>
+                            <line x1="16" y1="14" x2="48" y2="14"/>
+                            <circle cx="32" cy="8" r="3" fill="white" stroke="none"/>
+                            <line x1="32" y1="56" x2="22" y2="56"/>
+                            <line x1="32" y1="56" x2="42" y2="56"/>
+                            <path d="M8 34 L16 14 L24 34" fill="none"/>
+                            <path d="M8 34 Q16 42 24 34" fill="none"/>
+                            <path d="M40 30 L48 14 L56 30" fill="none"/>
+                            <path d="M40 30 Q48 38 56 30" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3>Lic. Roberto Garc&iacute;a</h3>
+                    <p class="card-title-sub">Abogado Litigante</p>
+                    <div class="hero-card-info">
+                        <div class="hero-card-info-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <span>C&eacute;dula Profesional No. 12345678</span>
+                        </div>
+                        <div class="hero-card-info-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span>Guadalajara, Jalisco</span>
+                        </div>
+                        <div class="hero-card-info-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            <span>Derecho Civil, Familiar y Mercantil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section section-alt" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <div class="section-label">Perfil Profesional</div>
+                    <h3>Compromiso legal con resultados comprobados</h3>
+                    <div class="about-divider"></div>
+                    <p>El <span class="highlight">Lic. Roberto Garc&iacute;a</span> es egresado de la <span class="highlight">Universidad de Guadalajara</span> con m&aacute;s de 12 a&ntilde;os de experiencia en derecho civil, familiar y mercantil. Su trayectoria se distingue por un enfoque estrat&eacute;gico y personalizado en cada caso.</p>
+                    <p>Ha representado con &eacute;xito a cientos de clientes en los tribunales de Jalisco, logrando resoluciones favorables en casos complejos de litigio civil, divorcios, custodia de menores y controversias mercantiles.</p>
+                    <div class="about-quote">
+                        &ldquo;Mi compromiso es defender tus derechos como si fueran los m&iacute;os. Cada caso merece atenci&oacute;n personalizada y una estrategia a la medida.&rdquo;
+                    </div>
+                </div>
+                <div class="stats-grid reveal reveal-delay-2">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div class="stat-number">12+</div>
+                        <div class="stat-label">A&ntilde;os de experiencia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        </div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Casos resueltos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 3 4 6 4s6-2 6-4v-5"/></svg>
+                        </div>
+                        <div class="stat-number">UdeG</div>
+                        <div class="stat-label">Universidad de Guadalajara</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div class="stat-number">ICAJ</div>
+                        <div class="stat-label">Colegio de Abogados de Jalisco</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Areas -->
+    <section class="section" id="areas">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">&Aacute;reas de Pr&aacute;ctica</div>
+                <h2 class="section-title">Soluciones legales para cada situaci&oacute;n</h2>
+                <p class="section-subtitle">Ofrecemos representaci&oacute;n legal integral en diversas ramas del derecho para proteger tus intereses.</p>
+            </div>
+            <div class="areas-grid">
+                <!-- Derecho Civil -->
+                <div class="area-card reveal reveal-delay-1">
+                    <div class="area-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                    </div>
+                    <h3>Derecho Civil</h3>
+                    <p>Protegemos tus derechos patrimoniales y personales con estrategias legales s&oacute;lidas y efectivas.</p>
+                    <div class="area-card-tags">
+                        <span class="area-tag">Contratos</span>
+                        <span class="area-tag">Demandas civiles</span>
+                        <span class="area-tag">Cobro de deudas</span>
+                        <span class="area-tag">Responsabilidad civil</span>
+                    </div>
+                </div>
+
+                <!-- Derecho Familiar -->
+                <div class="area-card reveal reveal-delay-2">
+                    <div class="area-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <h3>Derecho Familiar</h3>
+                    <p>Acompa&ntilde;amos a las familias en procesos legales delicados con sensibilidad y profesionalismo.</p>
+                    <div class="area-card-tags">
+                        <span class="area-tag">Divorcios</span>
+                        <span class="area-tag">Pensi&oacute;n alimenticia</span>
+                        <span class="area-tag">Custodia</span>
+                        <span class="area-tag">Adopci&oacute;n</span>
+                    </div>
+                </div>
+
+                <!-- Derecho Mercantil -->
+                <div class="area-card reveal reveal-delay-3">
+                    <div class="area-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                        </svg>
+                    </div>
+                    <h3>Derecho Mercantil</h3>
+                    <p>Asesor&iacute;a jur&iacute;dica para empresarios y comerciantes en sus operaciones y controversias mercantiles.</p>
+                    <div class="area-card-tags">
+                        <span class="area-tag">Constituci&oacute;n de empresas</span>
+                        <span class="area-tag">Contratos mercantiles</span>
+                        <span class="area-tag">Cobro de pagar&eacute;s</span>
+                    </div>
+                </div>
+
+                <!-- Derecho Laboral -->
+                <div class="area-card reveal reveal-delay-4">
+                    <div class="area-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3>Derecho Laboral</h3>
+                    <p>Defendemos los derechos de los trabajadores ante despidos injustificados y violaciones laborales.</p>
+                    <div class="area-card-tags">
+                        <span class="area-tag">Despido injustificado</span>
+                        <span class="area-tag">Liquidaciones</span>
+                        <span class="area-tag">Demandas laborales</span>
+                    </div>
+                </div>
+
+                <!-- Derecho Penal -->
+                <div class="area-card reveal reveal-delay-5">
+                    <div class="area-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Derecho Penal</h3>
+                    <p>Defensa penal especializada para proteger tu libertad y tus garant&iacute;as constitucionales.</p>
+                    <div class="area-card-tags">
+                        <span class="area-tag">Defensa penal</span>
+                        <span class="area-tag">Amparos</span>
+                        <span class="area-tag">Asesor&iacute;a en denuncias</span>
+                    </div>
+                </div>
+
+                <!-- Trámites Legales -->
+                <div class="area-card reveal reveal-delay-6">
+                    <div class="area-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16 17 21 12 16 7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                    </div>
+                    <h3>Tr&aacute;mites Legales</h3>
+                    <p>Gestionamos tr&aacute;mites notariales y documentos legales con agilidad y precisi&oacute;n.</p>
+                    <div class="area-card-tags">
+                        <span class="area-tag">Testamentos</span>
+                        <span class="area-tag">Poderes notariales</span>
+                        <span class="area-tag">Escrituraci&oacute;n</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section section-alt" id="proceso">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">&iquest;C&oacute;mo funciona?</div>
+                <h2 class="section-title">Tu caso en 3 simples pasos</h2>
+                <p class="section-subtitle">Un proceso claro y transparente para que sepas exactamente qu&eacute; esperar.</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step reveal reveal-delay-1">
+                    <div class="process-number">1</div>
+                    <h3>Consulta gratuita</h3>
+                    <p>Plat&iacute;canos tu caso sin compromiso. Evaluamos tu situaci&oacute;n y te orientamos sobre tus opciones legales.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-3">
+                    <div class="process-number">2</div>
+                    <h3>Estrategia legal</h3>
+                    <p>Dise&ntilde;amos el mejor plan para tu situaci&oacute;n. Te explicamos cada paso del proceso con total transparencia.</p>
+                </div>
+                <div class="process-step reveal reveal-delay-5">
+                    <div class="process-number">3</div>
+                    <h3>Representaci&oacute;n</h3>
+                    <p>Te acompa&ntilde;amos en todo el proceso legal. Defendemos tus derechos con determinaci&oacute;n y experiencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location -->
+    <section class="section" id="contacto">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Contacto</div>
+                <h2 class="section-title">Agenda tu consulta gratuita</h2>
+                <p class="section-subtitle">Cu&eacute;ntanos sobre tu caso y un abogado te contactar&aacute; en menos de 24 horas.</p>
+            </div>
+            <div class="contact-grid">
+                <!-- Form -->
+                <div class="contact-form-wrapper reveal">
+                    <h3>Env&iacute;anos tu caso</h3>
+                    <p class="form-intro">Completa el formulario y nos pondremos en contacto contigo a la brevedad.</p>
+                    <form onsubmit="event.preventDefault(); alert('Esta es una p&aacute;gina demo. En un sitio real, tu mensaje ser&iacute;a enviado al abogado.');">
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" id="nombre" placeholder="Ej. Mar&iacute;a L&oacute;pez Hern&aacute;ndez" required>
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                            <div class="form-group">
+                                <label for="telefono">Tel&eacute;fono</label>
+                                <input type="tel" id="telefono" placeholder="(33) 1234-5678" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo electr&oacute;nico</label>
+                                <input type="email" id="email" placeholder="tu@email.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="area">&Aacute;rea de inter&eacute;s</label>
+                            <select id="area" required>
+                                <option value="" disabled selected>Selecciona un &aacute;rea</option>
+                                <option value="civil">Derecho Civil</option>
+                                <option value="familiar">Derecho Familiar</option>
+                                <option value="mercantil">Derecho Mercantil</option>
+                                <option value="laboral">Derecho Laboral</option>
+                                <option value="penal">Derecho Penal</option>
+                                <option value="tramites">Tr&aacute;mites Legales</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Descripci&oacute;n breve de tu caso</label>
+                            <textarea id="mensaje" placeholder="Cu&eacute;ntanos brevemente tu situaci&oacute;n legal..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            Enviar consulta
+                        </button>
+                        <div class="form-note">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z"/></svg>
+                            Primera consulta sin costo. Confidencialidad garantizada.
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Location -->
+                <div class="location-info reveal reveal-delay-2">
+                    <h3>Visita nuestra oficina</h3>
+                    <p class="loc-subtitle">Estamos en el coraz&oacute;n de Guadalajara, listos para atenderte.</p>
+
+                    <div class="location-item">
+                        <div class="location-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div class="location-item-text">
+                            <strong>Direcci&oacute;n</strong>
+                            <span>Torre Corporativa, Av. Vallarta #1500,<br>Piso 8, Col. Americana,<br>Guadalajara, Jalisco</span>
+                        </div>
+                    </div>
+
+                    <div class="location-item">
+                        <div class="location-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div class="location-item-text">
+                            <strong>Tel&eacute;fono</strong>
+                            <a href="tel:+523334567890">(33) 3456-7890</a>
+                        </div>
+                    </div>
+
+                    <div class="location-item">
+                        <div class="location-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div class="location-item-text">
+                            <strong>Correo electr&oacute;nico</strong>
+                            <a href="mailto:contacto@licgarcia.com">contacto@licgarcia.com</a>
+                        </div>
+                    </div>
+
+                    <div class="location-item">
+                        <div class="location-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div class="location-item-text">
+                            <strong>Horario de atenci&oacute;n</strong>
+                            <span>Lunes a Viernes: 9:00 AM &ndash; 6:00 PM<br>S&aacute;bado: Con cita previa</span>
+                        </div>
+                    </div>
+
+                    <div class="map-wrapper">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.5!2d-103.3738!3d20.6767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae0a0b2d6a4d%3A0x1!2sAv.%20Vallarta%201500%2C%20Americana%2C%20Guadalajara%2C%20Jalisco!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Ubicaci&oacute;n de la oficina del Lic. Garc&iacute;a">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <div class="nav-logo-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3l-8 9h5v9h6v-9h5z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            Lic. Garc&iacute;a
+                            <span>Abogado</span>
+                        </div>
+                    </a>
+                    <p>Abogado en Guadalajara con m&aacute;s de 12 a&ntilde;os de experiencia. Defendemos tus derechos con profesionalismo y compromiso.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Servicios</h4>
+                    <a href="#areas">Derecho Civil</a>
+                    <a href="#areas">Derecho Familiar</a>
+                    <a href="#areas">Derecho Mercantil</a>
+                    <a href="#areas">Derecho Laboral</a>
+                    <a href="#areas">Derecho Penal</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Contacto</h4>
+                    <a href="tel:+523334567890">(33) 3456-7890</a>
+                    <a href="mailto:contacto@licgarcia.com">contacto@licgarcia.com</a>
+                    <a href="https://wa.me/5213312345678" target="_blank" rel="noopener">WhatsApp</a>
+                    <a href="#contacto">Agenda una cita</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Lic. Roberto Garc&iacute;a &mdash; Abogado. Todos los derechos reservados.</p>
+                <p style="margin-top:8px;">P&aacute;gina demo creada por <a href="https://wa.me/5213312345678" target="_blank" rel="noopener">&iquest;Y Tu Web?</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5213312345678?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20con%20el%20Lic.%20Garc%C3%ADa" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const overlay = document.getElementById('mobileOverlay');
+
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) toggleMenu();
+            });
+        });
+
+        // Scroll reveal
+        const revealElements = document.querySelectorAll('.reveal');
+
+        function checkReveal() {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const revealPoint = 100;
+                if (elementTop < windowHeight - revealPoint) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkReveal);
+        window.addEventListener('load', checkReveal);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

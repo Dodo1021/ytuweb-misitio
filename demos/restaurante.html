@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Parrilla de Don José — El mejor sabor de la parrilla en Guadalajara</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #1a1008;
+            --bg-card: #241a0e;
+            --bg-card-hover: #2e2214;
+            --accent-orange: #ff6b35;
+            --accent-orange-dark: #e55a28;
+            --accent-gold: #f7c948;
+            --accent-gold-dark: #d4a82e;
+            --text-primary: #faf5ef;
+            --text-secondary: #c4b8a8;
+            --text-muted: #8a7e70;
+            --border-color: #3a2e20;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.4);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul, ol { list-style: none; }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========== DEMO BANNER ========== */
+        .demo-banner {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-dark));
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .demo-banner a {
+            color: #fff;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .demo-banner a:hover {
+            color: var(--accent-gold);
+        }
+
+        .demo-banner .separator {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            margin: 0 4px;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(26, 16, 8, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(58, 46, 32, 0.5);
+            transition: var(--transition);
+        }
+
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--accent-gold);
+            letter-spacing: -0.02em;
+        }
+
+        .navbar-logo svg {
+            flex-shrink: 0;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .navbar-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-orange);
+            transition: var(--transition);
+            border-radius: 1px;
+        }
+
+        .navbar-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+
+        .navbar-cta {
+            background: var(--accent-orange);
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .navbar-cta::after { display: none !important; }
+
+        .navbar-cta:hover {
+            background: var(--accent-orange-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: var(--text-primary);
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(255, 107, 53, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(247, 201, 72, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(255, 107, 53, 0.06) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f7c948' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(247, 201, 72, 0.1);
+            border: 1px solid rgba(247, 201, 72, 0.25);
+            color: var(--accent-gold);
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 span {
+            display: block;
+            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--accent-orange);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-orange-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(255, 107, 53, 0.45);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-gold);
+            border: 2px solid rgba(247, 201, 72, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(247, 201, 72, 0.1);
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: float 3s ease-in-out infinite;
+            color: var(--text-muted);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* ========== SECTION BASE ========== */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-orange);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-label svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ========== ABOUT ========== */
+        .about {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 50%, var(--bg-dark) 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            aspect-ratio: 4/3;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, #2a1a0a 0%, #3d2610 50%, #1a0f05 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 40%, rgba(255, 107, 53, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(247, 201, 72, 0.1) 0%, transparent 50%);
+        }
+
+        .about-image-icon {
+            font-size: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-image-text {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-content h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .about-feature-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 107, 53, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--accent-orange);
+        }
+
+        .about-feature span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* ========== MENU ========== */
+        .menu-section {
+            background: var(--bg-dark);
+        }
+
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .menu-tab {
+            padding: 10px 24px;
+            border-radius: var(--radius-full);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .menu-tab:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .menu-tab.active {
+            background: var(--accent-orange);
+            color: #fff;
+            border-color: var(--accent-orange);
+        }
+
+        .menu-category {
+            display: none;
+        }
+
+        .menu-category.active {
+            display: block;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .menu-category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .menu-category-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-color), transparent);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+        }
+
+        .menu-item:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 107, 53, 0.2);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .menu-item-info {
+            flex: 1;
+        }
+
+        .menu-item-name {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .menu-item-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .menu-item-price {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--accent-gold);
+            white-space: nowrap;
+        }
+
+        /* ========== PROMOTIONS ========== */
+        .promos {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 50%, var(--bg-dark) 100%);
+        }
+
+        .promos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .promo-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 36px 28px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-gold));
+        }
+
+        .promo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .promo-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(255, 107, 53, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+        }
+
+        .promo-day {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-orange);
+            margin-bottom: 8px;
+        }
+
+        .promo-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .promo-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== GALLERY ========== */
+        .gallery {
+            background: var(--bg-dark);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 4/3;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .gallery-item-bg {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .gallery-item:nth-child(1) .gallery-item-bg {
+            background: linear-gradient(135deg, #2d1a0a, #4a2a10);
+        }
+        .gallery-item:nth-child(2) .gallery-item-bg {
+            background: linear-gradient(135deg, #1a0f05, #3d2010);
+        }
+        .gallery-item:nth-child(3) .gallery-item-bg {
+            background: linear-gradient(135deg, #2a1508, #3a2515);
+        }
+        .gallery-item:nth-child(4) .gallery-item-bg {
+            background: linear-gradient(135deg, #1f1208, #35200d);
+        }
+        .gallery-item:nth-child(5) .gallery-item-bg {
+            background: linear-gradient(135deg, #251608, #402812);
+        }
+        .gallery-item:nth-child(6) .gallery-item-bg {
+            background: linear-gradient(135deg, #1a1008, #2e1c0e);
+        }
+
+        .gallery-item-icon {
+            font-size: 3rem;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-item-icon {
+            transform: scale(1.15);
+        }
+
+        .gallery-item-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: rgba(0,0,0,0.4);
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            backdrop-filter: blur(8px);
+        }
+
+        /* ========== INFO / HOURS / LOCATION ========== */
+        .info-section {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-card) 50%, var(--bg-dark) 100%);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--accent-gold);
+        }
+
+        .hours-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hours-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .hours-days {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .hours-time {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 107, 53, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--accent-orange);
+        }
+
+        .contact-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .contact-text strong {
+            display: block;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .map-container {
+            margin-top: 40px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            height: 350px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(0.3) contrast(1.05);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: #0f0a04;
+            border-top: 1px solid var(--border-color);
+            padding: 48px 0 24px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--accent-gold);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--accent-orange);
+            border-color: var(--accent-orange);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        .footer-bottom a {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        /* ========== WHATSAPP FLOATING BTN ========== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            animation: pulse-wa 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse-wa {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.08); }
+        }
+
+        /* ========== SCROLL REVEAL ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image {
+                max-height: 300px;
+            }
+
+            .promos-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin: 0 auto;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 70px 0;
+            }
+
+            .navbar-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(26, 16, 8, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 20px;
+                gap: 0;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .navbar-links.open {
+                display: flex;
+            }
+
+            .navbar-links a {
+                padding: 14px 0;
+                border-bottom: 1px solid var(--border-color);
+                width: 100%;
+                text-align: center;
+            }
+
+            .navbar-links a:last-child {
+                border-bottom: none;
+                margin-top: 8px;
+            }
+
+            .navbar-links a::after { display: none; }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                min-height: 85vh;
+                padding: 80px 20px 60px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-tabs {
+                gap: 6px;
+            }
+
+            .menu-tab {
+                padding: 8px 16px;
+                font-size: 0.82rem;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-banner {
+                font-size: 0.75rem;
+                padding: 8px 12px;
+            }
+
+            .info-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        <span>Esta es una demo creada por <a href="../index.html#demos">¿Y Tu Web?</a></span>
+        <span class="separator"></span>
+        <span>¿Quieres una página así? <a href="https://wa.me/5213312345678">Cotiza gratis</a></span>
+        <span class="separator"></span>
+        <a href="../index.html#demos">&#8592; Volver</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-inner">
+            <a href="#" class="navbar-logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <circle cx="16" cy="16" r="15" stroke="#f7c948" stroke-width="2"/>
+                    <path d="M10 20 L16 8 L22 20" stroke="#ff6b35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path d="M12 17 h8" stroke="#f7c948" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="16" cy="22" r="1.5" fill="#ff6b35"/>
+                </svg>
+                La Parrilla de Don José
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+
+            <div class="navbar-links" id="navLinks">
+                <a href="#inicio">Inicio</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#menu">Menú</a>
+                <a href="#promociones">Promos</a>
+                <a href="#galeria">Galería</a>
+                <a href="#ubicacion">Ubicación</a>
+                <a href="https://wa.me/5213312345678" class="navbar-cta" target="_blank" rel="noopener">Reservar Mesa</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-badge reveal">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                Desde 2010 en Guadalajara
+            </div>
+            <h1 class="reveal reveal-delay-1">La Parrilla<span>de Don José</span></h1>
+            <p class="hero-tagline reveal reveal-delay-2">El mejor sabor de la parrilla en Guadalajara</p>
+            <div class="hero-buttons reveal reveal-delay-3">
+                <a href="#menu" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/><circle cx="7" cy="6" r="1" fill="currentColor"/><circle cx="7" cy="12" r="1" fill="currentColor"/><circle cx="7" cy="18" r="1" fill="currentColor"/></svg>
+                    Ver Menú
+                </a>
+                <a href="https://wa.me/5213312345678" class="btn btn-secondary" target="_blank" rel="noopener">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    Reservar Mesa
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <div class="about-image-icon">&#127830;</div>
+                    <div class="about-image-text">Ambiente familiar y acogedor</div>
+                </div>
+                <div class="about-content">
+                    <div class="section-label reveal">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        Nuestra historia
+                    </div>
+                    <h2 class="reveal reveal-delay-1">Tradición y sabor desde 2010</h2>
+                    <p class="reveal reveal-delay-2">Desde 2010, Don José trae los mejores cortes y el sazón tradicional jalisciense a tu mesa. Ambiente familiar, ingredientes frescos y parrilla al carbón.</p>
+                    <p class="reveal reveal-delay-2">Cada platillo es preparado con dedicación, usando recetas familiares que han pasado de generación en generación. Ven y descubre por qué somos el favorito de la colonia.</p>
+                    <div class="about-features reveal reveal-delay-3">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+                            </div>
+                            <span>+14 años de experiencia</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </div>
+                            <span>4.8 estrellas en Google</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                            </div>
+                            <span>Ambiente familiar</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <span>Ingredientes frescos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label reveal">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.1 13.34l2.83-2.83L3.91 3.5a4.008 4.008 0 000 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/></svg>
+                    Nuestro menú
+                </div>
+                <h2 class="section-title reveal reveal-delay-1">Sabores que enamoran</h2>
+                <p class="section-subtitle reveal reveal-delay-2">Preparados al momento con los ingredientes más frescos y el sazón inconfundible de Don José</p>
+            </div>
+
+            <div class="menu-tabs reveal reveal-delay-3">
+                <button class="menu-tab active" data-category="entradas">Entradas</button>
+                <button class="menu-tab" data-category="hamburguesas">Hamburguesas</button>
+                <button class="menu-tab" data-category="cortes">Cortes</button>
+                <button class="menu-tab" data-category="bebidas">Bebidas</button>
+                <button class="menu-tab" data-category="postres">Postres</button>
+            </div>
+
+            <!-- Entradas -->
+            <div class="menu-category active" id="cat-entradas">
+                <div class="menu-category-title">Entradas</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Guacamole fresco con totopos</div>
+                            <div class="menu-item-desc">Aguacate, jitomate, cilantro y limón</div>
+                        </div>
+                        <div class="menu-item-price">$85</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Queso fundido con chorizo</div>
+                            <div class="menu-item-desc">Queso Oaxaca fundido con chorizo artesanal</div>
+                        </div>
+                        <div class="menu-item-price">$110</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Elote en vaso</div>
+                            <div class="menu-item-desc">Granos de elote con mayonesa, queso y chile</div>
+                        </div>
+                        <div class="menu-item-price">$45</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Nachos supremos</div>
+                            <div class="menu-item-desc">Totopos con frijoles, queso, jalapeño y crema</div>
+                        </div>
+                        <div class="menu-item-price">$95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hamburguesas -->
+            <div class="menu-category" id="cat-hamburguesas">
+                <div class="menu-category-title">Hamburguesas</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Hamburguesa Clásica</div>
+                            <div class="menu-item-desc">200g de res, lechuga, tomate, queso americano</div>
+                        </div>
+                        <div class="menu-item-price">$95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Hamburguesa BBQ</div>
+                            <div class="menu-item-desc">200g de res, tocino, cebolla caramelizada, salsa BBQ</div>
+                        </div>
+                        <div class="menu-item-price">$120</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Hamburguesa Doble</div>
+                            <div class="menu-item-desc">2x200g de res, doble queso, jalapeño</div>
+                        </div>
+                        <div class="menu-item-price">$140</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cortes -->
+            <div class="menu-category" id="cat-cortes">
+                <div class="menu-category-title">Cortes a la Parrilla</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Arrachera 300g</div>
+                            <div class="menu-item-desc">Marinada en especias, acompañada de nopales y cebollitas</div>
+                        </div>
+                        <div class="menu-item-price">$195</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Rib Eye 400g</div>
+                            <div class="menu-item-desc">Corte premium a la parrilla con mantequilla de hierbas</div>
+                        </div>
+                        <div class="menu-item-price">$320</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Costillas BBQ</div>
+                            <div class="menu-item-desc">Costillas bañadas en nuestra salsa BBQ casera</div>
+                        </div>
+                        <div class="menu-item-price">$245</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Pechuga a la parrilla</div>
+                            <div class="menu-item-desc">Pechuga marinada en limón y hierbas finas</div>
+                        </div>
+                        <div class="menu-item-price">$145</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bebidas -->
+            <div class="menu-category" id="cat-bebidas">
+                <div class="menu-category-title">Bebidas</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Agua fresca del día</div>
+                            <div class="menu-item-desc">Jamaica, horchata o limón</div>
+                        </div>
+                        <div class="menu-item-price">$35</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Limonada mineral</div>
+                            <div class="menu-item-desc">Limón natural con agua mineral</div>
+                        </div>
+                        <div class="menu-item-price">$45</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Cerveza nacional</div>
+                            <div class="menu-item-desc">Corona, Modelo, Victoria, Pacífico</div>
+                        </div>
+                        <div class="menu-item-price">$40</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Cerveza artesanal</div>
+                            <div class="menu-item-desc">Selección rotativa de cervecerías locales</div>
+                        </div>
+                        <div class="menu-item-price">$65</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Refresco</div>
+                            <div class="menu-item-desc">Coca-Cola, Sprite, Fanta, Sidral</div>
+                        </div>
+                        <div class="menu-item-price">$30</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Postres -->
+            <div class="menu-category" id="cat-postres">
+                <div class="menu-category-title">Postres</div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Flan napolitano</div>
+                            <div class="menu-item-desc">Receta casera con caramelo natural</div>
+                        </div>
+                        <div class="menu-item-price">$55</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Pastel de chocolate</div>
+                            <div class="menu-item-desc">Bizcocho húmedo con ganache de chocolate</div>
+                        </div>
+                        <div class="menu-item-price">$65</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">Churros con chocolate</div>
+                            <div class="menu-item-desc">Churros crujientes con salsa de chocolate caliente</div>
+                        </div>
+                        <div class="menu-item-price">$50</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Promotions -->
+    <section class="promos" id="promociones">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label reveal">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
+                    Promociones
+                </div>
+                <h2 class="section-title reveal reveal-delay-1">Ofertas de la semana</h2>
+                <p class="section-subtitle reveal reveal-delay-2">Aprovecha nuestras promociones especiales, hay algo para cada día</p>
+            </div>
+
+            <div class="promos-grid">
+                <div class="promo-card reveal">
+                    <div class="promo-icon">&#127828;</div>
+                    <div class="promo-day">Martes</div>
+                    <div class="promo-title">2x1 en hamburguesas</div>
+                    <div class="promo-desc">Todas nuestras hamburguesas al 2x1. Aplica la de menor o igual precio.</div>
+                </div>
+                <div class="promo-card reveal reveal-delay-1">
+                    <div class="promo-icon">&#127831;</div>
+                    <div class="promo-day">Jueves</div>
+                    <div class="promo-title">Jueves de alitas</div>
+                    <div class="promo-desc">Orden de alitas a solo $99. Elige entre BBQ, buffalo o mango-habanero.</div>
+                </div>
+                <div class="promo-card reveal reveal-delay-2">
+                    <div class="promo-icon">&#127926;</div>
+                    <div class="promo-day">Viernes y sábado</div>
+                    <div class="promo-title">Música en vivo</div>
+                    <div class="promo-desc">Disfruta de música en vivo mientras saboreas tus cortes favoritos.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="galeria">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label reveal">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    Galería
+                </div>
+                <h2 class="section-title reveal reveal-delay-1">Conoce nuestro espacio</h2>
+                <p class="section-subtitle reveal reveal-delay-2">Un vistazo a nuestro restaurante, nuestros platillos y el ambiente que te espera</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item reveal">
+                    <div class="gallery-item-bg">
+                        <div class="gallery-item-icon">&#127969;</div>
+                        <div class="gallery-item-label">Interior del restaurante</div>
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-1">
+                    <div class="gallery-item-bg">
+                        <div class="gallery-item-icon">&#129385;</div>
+                        <div class="gallery-item-label">Cortes a la parrilla</div>
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-2">
+                    <div class="gallery-item-bg">
+                        <div class="gallery-item-icon">&#127828;</div>
+                        <div class="gallery-item-label">Hamburguesa BBQ</div>
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-1">
+                    <div class="gallery-item-bg">
+                        <div class="gallery-item-icon">&#127796;</div>
+                        <div class="gallery-item-label">Terraza</div>
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-2">
+                    <div class="gallery-item-bg">
+                        <div class="gallery-item-icon">&#127830;</div>
+                        <div class="gallery-item-label">Costillas BBQ</div>
+                    </div>
+                </div>
+                <div class="gallery-item reveal reveal-delay-3">
+                    <div class="gallery-item-bg">
+                        <div class="gallery-item-icon">&#127856;</div>
+                        <div class="gallery-item-label">Postres</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours & Location -->
+    <section class="info-section" id="ubicacion">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label reveal">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    Visítanos
+                </div>
+                <h2 class="section-title reveal reveal-delay-1">Horarios y ubicación</h2>
+                <p class="section-subtitle reveal reveal-delay-2">Te esperamos con los brazos abiertos y la parrilla encendida</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card reveal">
+                    <h3>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        Horario
+                    </h3>
+                    <div class="hours-list">
+                        <div class="hours-row">
+                            <span class="hours-days">Lunes - Jueves</span>
+                            <span class="hours-time">1:00 PM - 10:00 PM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="hours-days">Viernes - Sábado</span>
+                            <span class="hours-time">1:00 PM - 11:00 PM</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="hours-days">Domingo</span>
+                            <span class="hours-time">12:00 PM - 9:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card reveal reveal-delay-1">
+                    <h3>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Contacto
+                    </h3>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div class="contact-text">
+                                <strong>Dirección</strong>
+                                Av. Patria #1234, Col. Jardines del Valle, Guadalajara, Jalisco
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                            </div>
+                            <div class="contact-text">
+                                <strong>Teléfono</strong>
+                                (33) 1234-5678
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                            </div>
+                            <div class="contact-text">
+                                <strong>WhatsApp</strong>
+                                <a href="https://wa.me/5213312345678" target="_blank" rel="noopener" style="color: var(--accent-orange);">Enviar mensaje</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container reveal">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14930.945986498867!2d-103.35!3d20.67!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b18cb52fd39b%3A0xd63d9302571f6dc!2sGuadalajara%2C%20Jal.!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Ubicación de La Parrilla de Don José en Google Maps"
+                ></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="15" stroke="#f7c948" stroke-width="2"/>
+                        <path d="M10 20 L16 8 L22 20" stroke="#ff6b35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M12 17 h8" stroke="#f7c948" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="16" cy="22" r="1.5" fill="#ff6b35"/>
+                    </svg>
+                    La Parrilla de Don José
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="#" aria-label="TikTok">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.73a8.19 8.19 0 004.76 1.52v-3.4a4.85 4.85 0 01-1-.16z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 La Parrilla de Don José. Todos los derechos reservados.</p>
+                <p style="margin-top: 8px;">Página creada por <a href="../index.html#demos">¿Y Tu Web?</a> &mdash; <a href="https://wa.me/5213312345678">Cotiza tu sitio web</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5213312345678" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Enviar mensaje por WhatsApp">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <script>
+        // ========== MENU TABS ==========
+        const tabs = document.querySelectorAll('.menu-tab');
+        const categories = document.querySelectorAll('.menu-category');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active from all
+                tabs.forEach(t => t.classList.remove('active'));
+                categories.forEach(c => c.classList.remove('active'));
+
+                // Add active to clicked
+                tab.classList.add('active');
+                const target = document.getElementById('cat-' + tab.dataset.category);
+                if (target) target.classList.add('active');
+            });
+        });
+
+        // ========== MOBILE MENU ==========
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        // Close mobile menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // ========== SCROLL REVEAL (IntersectionObserver) ==========
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ========== NAVBAR SHADOW ON SCROLL ==========
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 50) {
+                navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.5)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+
+            lastScroll = currentScroll;
+        }, { passive: true });
+
+        // ========== SMOOTH SCROLL for anchor links ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

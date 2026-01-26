@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Amara — Moda que te define</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-dark: #140a1a;
+            --bg-card: #1e1225;
+            --bg-card-hover: #281a30;
+            --purple: #9c27b0;
+            --purple-light: #ce93d8;
+            --purple-glow: rgba(156, 39, 176, .35);
+            --text: #f5f0f7;
+            --text-muted: #a89bb2;
+            --gold: #d4a843;
+            --radius: 16px;
+            --transition: .3s cubic-bezier(.4,0,.2,1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ---- DEMO BANNER ---- */
+        .demo-banner {
+            background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+            color: #fff;
+            text-align: center;
+            padding: 10px 16px;
+            font-size: .82rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .demo-banner a {
+            color: #fff;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        .demo-banner .back-link {
+            background: rgba(255,255,255,.2);
+            padding: 4px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 6px;
+            transition: var(--transition);
+        }
+        .demo-banner .back-link:hover { background: rgba(255,255,255,.35); }
+
+        /* ---- NAVBAR ---- */
+        .navbar {
+            position: sticky;
+            top: 42px;
+            z-index: 900;
+            background: rgba(20, 10, 26, .85);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(156,39,176,.15);
+            padding: 0 24px;
+        }
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .navbar-brand {
+            font-size: 1.35rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--purple-light), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -.5px;
+        }
+        .navbar-links { display: flex; gap: 28px; list-style: none; }
+        .navbar-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: .88rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        .navbar-links a:hover { color: var(--purple-light); }
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: var(--purple);
+            transition: var(--transition);
+        }
+        .navbar-links a:hover::after { width: 100%; }
+
+        .mobile-toggle {
+            display: none;
+            background: none; border: none;
+            color: var(--text); cursor: pointer;
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 24px;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at 50% 30%, rgba(156,39,176,.18) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 80%, rgba(206,147,216,.08) 0%, transparent 40%),
+                        var(--bg-dark);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg at 50% 50%,
+                transparent 0deg, rgba(156,39,176,.04) 60deg,
+                transparent 120deg, rgba(206,147,216,.03) 180deg,
+                transparent 240deg, rgba(156,39,176,.04) 300deg,
+                transparent 360deg);
+            animation: heroRotate 30s linear infinite;
+        }
+        @keyframes heroRotate { to { transform: rotate(360deg); } }
+
+        .hero-content { position: relative; z-index: 2; max-width: 700px; }
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 20px;
+            border: 1px solid rgba(206,147,216,.3);
+            border-radius: 40px;
+            font-size: .78rem;
+            font-weight: 500;
+            color: var(--purple-light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 30%, var(--purple-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto 36px;
+            font-weight: 300;
+        }
+        .hero-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: .92rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple), #7b1fa2);
+            color: #fff;
+            box-shadow: 0 4px 24px var(--purple-glow);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px var(--purple-glow);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--purple-light);
+            border: 1.5px solid rgba(206,147,216,.35);
+        }
+        .btn-outline:hover {
+            background: rgba(156,39,176,.1);
+            border-color: var(--purple-light);
+            transform: translateY(-2px);
+        }
+        .btn svg { width: 18px; height: 18px; }
+
+        /* ---- SECTIONS GENERIC ---- */
+        section { padding: 80px 24px; }
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .section-header p { color: var(--text-muted); max-width: 520px; margin: 0 auto; }
+        .accent-line {
+            width: 48px; height: 3px;
+            background: linear-gradient(90deg, var(--purple), var(--purple-light));
+            border-radius: 4px;
+            margin: 16px auto 0;
+        }
+
+        /* ---- CATALOG ---- */
+        .catalog { background: linear-gradient(180deg, var(--bg-dark), #110818, var(--bg-dark)); }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .filter-btn {
+            padding: 10px 24px;
+            border-radius: 40px;
+            border: 1.5px solid rgba(206,147,216,.2);
+            background: transparent;
+            color: var(--text-muted);
+            font-family: inherit;
+            font-size: .85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .filter-btn:hover { border-color: var(--purple); color: var(--purple-light); }
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--purple), #7b1fa2);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(156,39,176,.08);
+            transition: var(--transition);
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(156,39,176,.25);
+            box-shadow: 0 16px 48px rgba(156,39,176,.12);
+        }
+        .product-card.hidden { display: none; }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: .15;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255,255,255,.03) 20px,
+                rgba(255,255,255,.03) 40px
+            );
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 12px; left: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: .7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+        .tag-new { background: var(--purple); color: #fff; }
+        .tag-hot { background: #e91e63; color: #fff; }
+        .tag-sale { background: var(--gold); color: #140a1a; }
+
+        .product-info { padding: 20px; }
+        .product-category {
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--purple-light);
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .product-name {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--purple-light);
+            margin-bottom: 14px;
+        }
+
+        .btn-whatsapp-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            border-radius: 40px;
+            background: #25d366;
+            color: #fff;
+            font-size: .78rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-whatsapp-sm:hover { background: #1da851; transform: translateY(-1px); }
+        .btn-whatsapp-sm svg { width: 16px; height: 16px; }
+
+        /* ---- ABOUT ---- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .about-visual {
+            aspect-ratio: 1;
+            max-width: 420px;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, rgba(156,39,176,.2), rgba(206,147,216,.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(156,39,176,.15);
+        }
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(156,39,176,.25), transparent 60%);
+        }
+        .about-text h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: .95rem;
+        }
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 28px;
+        }
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .88rem;
+            font-weight: 500;
+        }
+        .about-feature .icon-circle {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(156,39,176,.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .about-feature .icon-circle svg { width: 16px; height: 16px; color: var(--purple-light); }
+
+        /* ---- INFO / HOURS ---- */
+        .info-section { background: linear-gradient(180deg, var(--bg-dark), #110818); }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .info-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 36px;
+            border: 1px solid rgba(156,39,176,.1);
+        }
+        .info-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .info-card h3 svg { width: 22px; height: 22px; color: var(--purple-light); }
+
+        .hours-list { list-style: none; }
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,.05);
+            font-size: .9rem;
+        }
+        .hours-list li:last-child { border-bottom: none; }
+        .hours-list .day { color: var(--text-muted); }
+        .hours-list .time { font-weight: 600; }
+        .hours-list .open { color: #4caf50; }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            font-size: .9rem;
+            color: var(--text-muted);
+        }
+        .contact-item svg { width: 20px; height: 20px; color: var(--purple-light); flex-shrink: 0; }
+        .contact-item a { color: var(--purple-light); text-decoration: none; }
+        .contact-item a:hover { text-decoration: underline; }
+
+        .map-wrapper {
+            margin-top: 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(156,39,176,.1);
+        }
+        .map-wrapper iframe { width: 100%; height: 320px; border: none; display: block; }
+
+        /* ---- FOOTER ---- */
+        footer {
+            border-top: 1px solid rgba(156,39,176,.1);
+            padding: 40px 24px;
+            text-align: center;
+        }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-brand {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--purple-light), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        footer p { color: var(--text-muted); font-size: .82rem; }
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .footer-socials a {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(156,39,176,.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--purple-light);
+            transition: var(--transition);
+        }
+        .footer-socials a:hover { background: var(--purple); color: #fff; transform: translateY(-2px); }
+        .footer-socials a svg { width: 18px; height: 18px; }
+
+        /* ---- FLOATING WHATSAPP ---- */
+        .wa-float {
+            position: fixed;
+            bottom: 28px; right: 28px;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: #25d366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37,211,102,.4);
+            z-index: 999;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.55); }
+        .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+        .wa-float .wa-pulse {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid #25d366;
+            animation: waPulse 2s infinite;
+        }
+        @keyframes waPulse {
+            0% { transform: scale(1); opacity: .6; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+
+        /* ---- SCROLL REVEAL ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: .1s; }
+        .reveal-delay-2 { transition-delay: .2s; }
+        .reveal-delay-3 { transition-delay: .3s; }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 900px) {
+            .about-grid { grid-template-columns: 1fr; text-align: center; }
+            .about-visual { margin: 0 auto; max-width: 280px; }
+            .about-features { justify-items: center; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .navbar-links { display: none; }
+            .mobile-toggle { display: block; }
+            .navbar-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: rgba(20,10,26,.97);
+                backdrop-filter: blur(18px);
+                padding: 20px 24px;
+                gap: 16px;
+                border-bottom: 1px solid rgba(156,39,176,.15);
+            }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+            section { padding: 60px 16px; }
+            .hero { min-height: 80vh; padding: 60px 16px; }
+        }
+        @media (max-width: 480px) {
+            .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .product-info { padding: 14px; }
+            .product-name { font-size: .88rem; }
+            .product-price { font-size: 1rem; margin-bottom: 10px; }
+            .btn-whatsapp-sm { padding: 8px 12px; font-size: .72rem; }
+            .filter-btn { padding: 8px 16px; font-size: .78rem; }
+            .about-features { grid-template-columns: 1fr; }
+            .info-card { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+    <span>Esta es una demo creada por <strong>&iquest;Y Tu Web?</strong> &mdash; &iquest;Quieres una p&aacute;gina as&iacute;?</span>
+    <a href="https://wa.me/5213312345678" target="_blank" rel="noopener">Cotiza gratis</a>
+    <a href="../index.html#demos" class="back-link">&#8592; Volver</a>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="navbar-inner">
+        <div class="navbar-brand">Boutique Amara</div>
+        <ul class="navbar-links" id="navLinks">
+            <li><a href="#catalogo">Cat&aacute;logo</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#info">Ubicaci&oacute;n</a></li>
+            <li><a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20un%20producto%20de%20Boutique%20Amara" target="_blank" rel="noopener">Contacto</a></li>
+        </ul>
+        <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Men&uacute;">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+    <div class="hero-content">
+        <div class="hero-badge reveal">Guadalajara, Jalisco</div>
+        <h1 class="reveal reveal-delay-1">Boutique Amara</h1>
+        <p class="reveal reveal-delay-2">Moda que te define. Descubre piezas &uacute;nicas seleccionadas para la mujer moderna que busca estilo y originalidad.</p>
+        <div class="hero-buttons reveal reveal-delay-3">
+            <a href="#catalogo" class="btn btn-primary">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+                Ver Cat&aacute;logo
+            </a>
+            <a href="https://wa.me/5213387654321?text=Hola%2C%20quiero%20conocer%20m%C3%A1s%20de%20Boutique%20Amara" target="_blank" rel="noopener" class="btn btn-outline">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.295-.18-2.867.852.852-2.867-.18-.295A8 8 0 1112 20z"/></svg>
+                Comprar por WhatsApp
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CATALOG -->
+<section class="catalog" id="catalogo">
+    <div class="section-container">
+        <div class="section-header reveal">
+            <h2>Nuestro Cat&aacute;logo</h2>
+            <p>Explora nuestra colecci&oacute;n cuidadosamente seleccionada para ti</p>
+            <div class="accent-line"></div>
+        </div>
+
+        <div class="filter-bar reveal">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="vestidos">Vestidos</button>
+            <button class="filter-btn" data-filter="blusas">Blusas</button>
+            <button class="filter-btn" data-filter="pantalones">Pantalones</button>
+            <button class="filter-btn" data-filter="accesorios">Accesorios</button>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+
+            <!-- VESTIDOS -->
+            <div class="product-card reveal" data-cat="vestidos">
+                <div class="product-img" style="background:linear-gradient(135deg,#4a1942,#7b1fa2)">
+                    <span class="product-tag tag-new">Nuevo</span>
+                    &#128090;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Vestidos</div>
+                    <div class="product-name">Vestido floral midi</div>
+                    <div class="product-price">$890</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20el%20Vestido%20floral%20midi%20%24890" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-cat="vestidos">
+                <div class="product-img" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+                    <span class="product-tag tag-hot">Popular</span>
+                    &#129399;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Vestidos</div>
+                    <div class="product-name">Vestido negro elegante</div>
+                    <div class="product-price">$1,200</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20el%20Vestido%20negro%20elegante%20%241%2C200" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-cat="vestidos">
+                <div class="product-img" style="background:linear-gradient(135deg,#614385,#516395)">
+                    &#128087;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Vestidos</div>
+                    <div class="product-name">Vestido casual estampado</div>
+                    <div class="product-price">$650</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20el%20Vestido%20casual%20estampado%20%24650" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-cat="vestidos">
+                <div class="product-img" style="background:linear-gradient(135deg,#2c003e,#512da8)">
+                    <span class="product-tag tag-sale">-10%</span>
+                    &#10024;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Vestidos</div>
+                    <div class="product-name">Vestido de noche largo</div>
+                    <div class="product-price">$1,800</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20el%20Vestido%20de%20noche%20largo%20%241%2C800" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- BLUSAS -->
+            <div class="product-card reveal" data-cat="blusas">
+                <div class="product-img" style="background:linear-gradient(135deg,#5c2d82,#b06ab3)">
+                    <span class="product-tag tag-new">Nuevo</span>
+                    &#128085;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Blusas</div>
+                    <div class="product-name">Blusa satinada</div>
+                    <div class="product-price">$450</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20la%20Blusa%20satinada%20%24450" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-cat="blusas">
+                <div class="product-img" style="background:linear-gradient(135deg,#e91e63,#ad1457)">
+                    &#128086;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Blusas</div>
+                    <div class="product-name">Blusa crop top</div>
+                    <div class="product-price">$350</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20la%20Blusa%20crop%20top%20%24350" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-cat="blusas">
+                <div class="product-img" style="background:linear-gradient(135deg,#283593,#5c6bc0)">
+                    <span class="product-tag tag-hot">Popular</span>
+                    &#129509;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Blusas</div>
+                    <div class="product-name">Blusa manga larga</div>
+                    <div class="product-price">$480</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20la%20Blusa%20manga%20larga%20%24480" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-cat="blusas">
+                <div class="product-img" style="background:linear-gradient(135deg,#4a148c,#8e24aa)">
+                    &#128092;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Blusas</div>
+                    <div class="product-name">Camisa oversize</div>
+                    <div class="product-price">$520</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20la%20Camisa%20oversize%20%24520" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- PANTALONES -->
+            <div class="product-card reveal" data-cat="pantalones">
+                <div class="product-img" style="background:linear-gradient(135deg,#1a237e,#3949ab)">
+                    <span class="product-tag tag-hot">Popular</span>
+                    &#128086;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Pantalones</div>
+                    <div class="product-name">Jeans skinny</div>
+                    <div class="product-price">$680</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesan%20los%20Jeans%20skinny%20%24680" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-cat="pantalones">
+                <div class="product-img" style="background:linear-gradient(135deg,#880e4f,#c2185b)">
+                    <span class="product-tag tag-new">Nuevo</span>
+                    &#129523;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Pantalones</div>
+                    <div class="product-name">Pantal&oacute;n palazzo</div>
+                    <div class="product-price">$750</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20el%20Pantal%C3%B3n%20palazzo%20%24750" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-cat="pantalones">
+                <div class="product-img" style="background:linear-gradient(135deg,#212121,#424242)">
+                    &#128084;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Pantalones</div>
+                    <div class="product-name">Pantal&oacute;n de vestir</div>
+                    <div class="product-price">$850</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20el%20Pantal%C3%B3n%20de%20vestir%20%24850" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-cat="pantalones">
+                <div class="product-img" style="background:linear-gradient(135deg,#0d47a1,#42a5f5)">
+                    <span class="product-tag tag-sale">-15%</span>
+                    &#9728;&#65039;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Pantalones</div>
+                    <div class="product-name">Shorts de mezclilla</div>
+                    <div class="product-price">$480</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesan%20los%20Shorts%20de%20mezclilla%20%24480" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- ACCESORIOS -->
+            <div class="product-card reveal" data-cat="accesorios">
+                <div class="product-img" style="background:linear-gradient(135deg,#bf360c,#e64a19)">
+                    <span class="product-tag tag-hot">Popular</span>
+                    &#128092;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Accesorios</div>
+                    <div class="product-name">Bolsa crossbody</div>
+                    <div class="product-price">$950</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20la%20Bolsa%20crossbody%20%24950" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-cat="accesorios">
+                <div class="product-img" style="background:linear-gradient(135deg,#f9a825,#fdd835)">
+                    <span class="product-tag tag-new">Nuevo</span>
+                    &#10024;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Accesorios</div>
+                    <div class="product-name">Aretes dorados</div>
+                    <div class="product-price">$280</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesan%20los%20Aretes%20dorados%20%24280" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-cat="accesorios">
+                <div class="product-img" style="background:linear-gradient(135deg,#6a1b9a,#ab47bc)">
+                    &#128142;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Accesorios</div>
+                    <div class="product-name">Collar statement</div>
+                    <div class="product-price">$380</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20el%20Collar%20statement%20%24380" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-cat="accesorios">
+                <div class="product-img" style="background:linear-gradient(135deg,#4e342e,#795548)">
+                    &#129523;
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Accesorios</div>
+                    <div class="product-name">Cintur&oacute;n de piel</div>
+                    <div class="product-price">$420</div>
+                    <a href="https://wa.me/5213387654321?text=Hola%2C%20me%20interesa%20el%20Cintur%C3%B3n%20de%20piel%20%24420" target="_blank" rel="noopener" class="btn-whatsapp-sm">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="nosotros">
+    <div class="section-container">
+        <div class="about-grid">
+            <div class="about-visual reveal">
+                &#128090;
+            </div>
+            <div class="about-text">
+                <h2 class="reveal">Sobre Boutique Amara</h2>
+                <p class="reveal">Boutique Amara es tu destino de moda en Guadalajara. Piezas cuidadosamente seleccionadas para la mujer moderna que busca estilo, calidad y originalidad.</p>
+                <p class="reveal">Cada temporada traemos lo mejor de las tendencias nacionales e internacionales, adaptadas al estilo &uacute;nico de la mujer mexicana.</p>
+                <div class="about-features reveal">
+                    <div class="about-feature">
+                        <div class="icon-circle">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <span>Env&iacute;o a todo M&eacute;xico</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="icon-circle">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <span>Piezas exclusivas</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="icon-circle">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <span>Atenci&oacute;n personalizada</span>
+                    </div>
+                    <div class="about-feature">
+                        <div class="icon-circle">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <span>Cambios y devoluciones</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INFO -->
+<section class="info-section" id="info">
+    <div class="section-container">
+        <div class="section-header reveal">
+            <h2>Vis&iacute;tanos</h2>
+            <p>Enc&uacute;entranos en el coraz&oacute;n de Guadalajara</p>
+            <div class="accent-line"></div>
+        </div>
+        <div class="info-grid">
+            <div class="info-card reveal">
+                <h3>
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Horario
+                </h3>
+                <ul class="hours-list">
+                    <li><span class="day">Lunes</span><span class="time open">10:00 AM - 8:00 PM</span></li>
+                    <li><span class="day">Martes</span><span class="time open">10:00 AM - 8:00 PM</span></li>
+                    <li><span class="day">Mi&eacute;rcoles</span><span class="time open">10:00 AM - 8:00 PM</span></li>
+                    <li><span class="day">Jueves</span><span class="time open">10:00 AM - 8:00 PM</span></li>
+                    <li><span class="day">Viernes</span><span class="time open">10:00 AM - 8:00 PM</span></li>
+                    <li><span class="day">S&aacute;bado</span><span class="time open">10:00 AM - 8:00 PM</span></li>
+                    <li><span class="day">Domingo</span><span class="time open">11:00 AM - 5:00 PM</span></li>
+                </ul>
+            </div>
+            <div class="info-card reveal">
+                <h3>
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Contacto
+                </h3>
+                <div class="contact-item">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>Av. Chapultepec #321, Col. Americana, Guadalajara, Jalisco</span>
+                </div>
+                <div class="contact-item">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    <a href="tel:+523387654321">(33) 8765-4321</a>
+                </div>
+                <div class="contact-item">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    <a href="https://instagram.com/boutiqueamara" target="_blank" rel="noopener">@boutiqueamara</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-wrapper reveal">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.8558891789196!2d-103.36536!3d20.6720375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b18e20a8001d%3A0x29a529dc087b36e6!2sAv.%20Chapultepec%2C%20Col%20Americana%2C%20Guadalajara%2C%20Jal.!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">Boutique Amara</div>
+        <div class="footer-socials">
+            <a href="https://instagram.com/boutiqueamara" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://facebook.com/boutiqueamara" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://wa.me/5213387654321" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.295-.18-2.867.852.852-2.867-.18-.295A8 8 0 1112 20z"/></svg>
+            </a>
+        </div>
+        <p>&copy; 2026 Boutique Amara. Todos los derechos reservados.</p>
+        <p style="margin-top:8px;font-size:.75rem;color:#6a5778;">Demo creada por <a href="../index.html" style="color:var(--purple-light);text-decoration:none;">&iquest;Y Tu Web?</a></p>
+    </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/5213387654321?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Boutique%20Amara" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+    <div class="wa-pulse"></div>
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.295-.18-2.867.852.852-2.867-.18-.295A8 8 0 1112 20z"/></svg>
+</a>
+
+<script>
+// ---- SCROLL REVEAL ----
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+// ---- CATEGORY FILTER ----
+const filterBtns = document.querySelectorAll('.filter-btn');
+const productCards = document.querySelectorAll('.product-card');
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        productCards.forEach(card => {
+            if (filter === 'todos' || card.dataset.cat === filter) {
+                card.classList.remove('hidden');
+                card.style.display = '';
+            } else {
+                card.classList.add('hidden');
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+// ---- CLOSE MOBILE NAV ON LINK CLICK ----
+document.querySelectorAll('.navbar-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+    });
+});
+
+// ---- NAVBAR SHADOW ON SCROLL ----
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 20) {
+        navbar.style.boxShadow = '0 4px 24px rgba(0,0,0,.3)';
+    } else {
+        navbar.style.boxShadow = 'none';
+    }
+});
+</script>
+</body>
+</html>

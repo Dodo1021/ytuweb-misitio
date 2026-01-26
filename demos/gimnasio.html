@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Fitness GDL — Gimnasio en Zapopan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a0808;
+            color: #f0e6e6;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* ===== DEMO BANNER ===== */
+        .demo-banner {
+            background: linear-gradient(90deg, #f44336, #ff7043);
+            color: #fff;
+            text-align: center;
+            padding: 10px 16px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .demo-banner a {
+            color: #fff;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+        .demo-banner a:hover { color: #1a0808; }
+        .demo-banner .sep { margin: 0 6px; opacity: .6; }
+        .demo-back {
+            background: rgba(255,255,255,.2);
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            margin-left: 8px;
+            transition: background .3s;
+        }
+        .demo-back:hover { background: rgba(255,255,255,.35); }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 38px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0 24px;
+            transition: background .35s, box-shadow .35s, top .35s;
+        }
+        .navbar.scrolled {
+            background: rgba(26, 8, 8, .95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 24px rgba(0,0,0,.4);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+        .nav-logo {
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-logo .accent { color: #f44336; }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links a {
+            font-size: .88rem;
+            font-weight: 600;
+            color: rgba(240,230,230,.8);
+            transition: color .3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f44336;
+            transition: width .3s;
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            background: #f44336 !important;
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 700 !important;
+            transition: background .3s, transform .3s !important;
+        }
+        .nav-cta:hover { background: #e53935 !important; transform: scale(1.05); }
+        .nav-cta::after { display: none !important; }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: #fff;
+            border-radius: 2px;
+            transition: transform .3s, opacity .3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: #1a0808;
+                flex-direction: column;
+                padding: 100px 32px 32px;
+                gap: 20px;
+                transition: right .4s cubic-bezier(.4,0,.2,1);
+                box-shadow: -4px 0 30px rgba(0,0,0,.5);
+            }
+            .nav-links.open { right: 0; }
+            .nav-links a { font-size: 1.05rem; }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 24px 80px;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(244,67,54,.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(255,112,67,.12) 0%, transparent 60%),
+                linear-gradient(180deg, #1a0808 0%, #0d0404 100%);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,.015) 40px, rgba(255,255,255,.015) 41px),
+                repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,.015) 40px, rgba(255,255,255,.015) 41px);
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(244,67,54,.12);
+            border: 1px solid rgba(244,67,54,.3);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: .82rem;
+            font-weight: 600;
+            color: #ff7043;
+            margin-bottom: 24px;
+        }
+        .hero-badge .dot {
+            width: 8px; height: 8px;
+            background: #f44336;
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .5; transform: scale(1.3); }
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, #f44336, #ff7043, #ffa726);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: clamp(1.05rem, 2vw, 1.3rem);
+            color: rgba(240,230,230,.7);
+            margin-bottom: 36px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: transform .3s, box-shadow .3s, background .3s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-primary {
+            background: linear-gradient(135deg, #f44336, #ff7043);
+            color: #fff;
+            box-shadow: 0 8px 32px rgba(244,67,54,.3);
+        }
+        .btn-primary:hover { box-shadow: 0 12px 40px rgba(244,67,54,.45); }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,.25);
+        }
+        .btn-outline:hover { border-color: #f44336; color: #f44336; }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 56px;
+            flex-wrap: wrap;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat .num {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #f44336;
+            display: block;
+        }
+        .hero-stat .label {
+            font-size: .82rem;
+            color: rgba(240,230,230,.5);
+            font-weight: 500;
+        }
+
+        /* Decorative shapes */
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: .12;
+            pointer-events: none;
+        }
+        .hero-shape-1 {
+            width: 400px; height: 400px;
+            background: #f44336;
+            top: -100px; right: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+        .hero-shape-2 {
+            width: 300px; height: 300px;
+            background: #ff7043;
+            bottom: -50px; left: -50px;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+        }
+
+        /* ===== SECTION COMMON ===== */
+        section { padding: 100px 24px; }
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .section-header .overline {
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #ff7043;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .section-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+        .section-header p {
+            color: rgba(240,230,230,.55);
+            margin-top: 12px;
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* ===== CLASSES ===== */
+        #clases { background: linear-gradient(180deg, #0d0404 0%, #1a0808 100%); }
+        .schedule-grid {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        }
+        .class-card {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            transition: transform .3s, border-color .3s, box-shadow .3s;
+        }
+        .class-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(244,67,54,.3);
+            box-shadow: 0 8px 32px rgba(244,67,54,.08);
+        }
+        .class-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.5rem;
+        }
+        .class-icon.crossfit { background: linear-gradient(135deg, rgba(244,67,54,.2), rgba(244,67,54,.05)); color: #f44336; }
+        .class-icon.spinning { background: linear-gradient(135deg, rgba(255,112,67,.2), rgba(255,112,67,.05)); color: #ff7043; }
+        .class-icon.yoga { background: linear-gradient(135deg, rgba(76,175,80,.2), rgba(76,175,80,.05)); color: #66bb6a; }
+        .class-icon.box { background: linear-gradient(135deg, rgba(239,83,80,.2), rgba(239,83,80,.05)); color: #ef5350; }
+        .class-icon.zumba { background: linear-gradient(135deg, rgba(171,71,188,.2), rgba(171,71,188,.05)); color: #ab47bc; }
+        .class-icon.funcional { background: linear-gradient(135deg, rgba(255,167,38,.2), rgba(255,167,38,.05)); color: #ffa726; }
+        .class-info h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .class-info .days {
+            font-size: .82rem;
+            color: rgba(240,230,230,.5);
+            margin-bottom: 8px;
+        }
+        .class-times {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .time-tag {
+            background: rgba(255,255,255,.06);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: .76rem;
+            font-weight: 600;
+            color: rgba(240,230,230,.7);
+        }
+
+        /* ===== MEMBERSHIPS ===== */
+        #membresias {
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(244,67,54,.06) 0%, transparent 60%),
+                #1a0808;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            align-items: stretch;
+        }
+        .pricing-card {
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 20px;
+            padding: 36px 28px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform .3s, border-color .3s, box-shadow .3s;
+        }
+        .pricing-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0,0,0,.3);
+        }
+        .pricing-card.featured {
+            border-color: #f44336;
+            background: linear-gradient(180deg, rgba(244,67,54,.08) 0%, rgba(255,255,255,.03) 40%);
+            box-shadow: 0 0 60px rgba(244,67,54,.08);
+        }
+        .popular-badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #f44336, #ff7043);
+            color: #fff;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .pricing-header { margin-bottom: 24px; }
+        .pricing-name {
+            font-size: .85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ff7043;
+            margin-bottom: 8px;
+        }
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+        .pricing-price .currency { font-size: 1.4rem; vertical-align: top; margin-right: 2px; }
+        .pricing-period {
+            font-size: .88rem;
+            color: rgba(240,230,230,.45);
+            font-weight: 500;
+        }
+        .pricing-features {
+            flex: 1;
+            margin-bottom: 28px;
+        }
+        .pricing-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: .92rem;
+            color: rgba(240,230,230,.75);
+        }
+        .pricing-features li svg {
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: .95rem;
+            transition: transform .3s, background .3s, box-shadow .3s;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        .pricing-btn-outline {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,.15);
+            color: #fff;
+        }
+        .pricing-btn-outline:hover { border-color: #f44336; color: #f44336; transform: translateY(-2px); }
+        .pricing-btn-primary {
+            background: linear-gradient(135deg, #f44336, #ff7043);
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(244,67,54,.25);
+        }
+        .pricing-btn-primary:hover { box-shadow: 0 12px 36px rgba(244,67,54,.4); transform: translateY(-2px); }
+
+        /* ===== GALLERY ===== */
+        #galeria { background: linear-gradient(180deg, #1a0808, #0d0404); }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .gallery-card {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            cursor: pointer;
+            transition: transform .3s, box-shadow .3s;
+        }
+        .gallery-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(0,0,0,.3);
+        }
+        .gallery-card .emoji {
+            font-size: 3rem;
+            filter: grayscale(0);
+            transition: transform .3s;
+        }
+        .gallery-card:hover .emoji { transform: scale(1.15); }
+        .gallery-card .label {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,.4);
+        }
+        .gallery-card:nth-child(1) { background: linear-gradient(135deg, #2c1010, #4a1a1a); }
+        .gallery-card:nth-child(2) { background: linear-gradient(135deg, #1a1a2c, #2c1a3a); }
+        .gallery-card:nth-child(3) { background: linear-gradient(135deg, #2c2010, #4a3020); }
+        .gallery-card:nth-child(4) { background: linear-gradient(135deg, #102c1a, #1a4a2c); }
+        .gallery-card:nth-child(5) { background: linear-gradient(135deg, #2c1020, #4a1a30); }
+        .gallery-card:nth-child(6) { background: linear-gradient(135deg, #10202c, #1a304a); }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,.25);
+            transition: background .3s;
+        }
+        .gallery-card:hover .gallery-overlay { background: rgba(0,0,0,.1); }
+        .gallery-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        /* ===== LOCATION ===== */
+        #ubicacion {
+            background:
+                radial-gradient(ellipse at 50% 100%, rgba(244,67,54,.05) 0%, transparent 60%),
+                #1a0808;
+        }
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        @media (max-width: 768px) {
+            .location-grid { grid-template-columns: 1fr; }
+        }
+        .location-info { display: flex; flex-direction: column; gap: 24px; }
+        .info-block {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .info-block-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(244,67,54,.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #f44336;
+        }
+        .info-block h4 {
+            font-size: .95rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .info-block p, .info-block li {
+            font-size: .88rem;
+            color: rgba(240,230,230,.6);
+            line-height: 1.6;
+        }
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+        }
+        .hours-list .day { font-weight: 600; color: rgba(240,230,230,.8); }
+        .map-wrapper {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.06);
+            height: 100%;
+            min-height: 380px;
+        }
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+            border: 0;
+            filter: brightness(.85) contrast(1.1) saturate(.7) hue-rotate(10deg);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #0d0404;
+            border-top: 1px solid rgba(255,255,255,.05);
+            padding: 48px 24px 24px;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+        @media (max-width: 768px) {
+            .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+        }
+        .footer h3 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+        .footer p, .footer li {
+            font-size: .85rem;
+            color: rgba(240,230,230,.45);
+            line-height: 1.7;
+        }
+        .footer ul li a {
+            transition: color .3s;
+        }
+        .footer ul li a:hover { color: #f44336; }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 32px;
+            margin-top: 32px;
+            border-top: 1px solid rgba(255,255,255,.05);
+            font-size: .8rem;
+            color: rgba(240,230,230,.3);
+        }
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255,255,255,.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(240,230,230,.5);
+            transition: background .3s, color .3s;
+        }
+        .footer-socials a:hover { background: #f44336; color: #fff; }
+
+        /* ===== WHATSAPP FLOAT ===== */
+        .wa-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 5000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25d366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 24px rgba(37,211,102,.35);
+            transition: transform .3s, box-shadow .3s;
+            animation: wa-bounce 3s ease-in-out infinite;
+        }
+        .wa-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 32px rgba(37,211,102,.5);
+        }
+        .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+        @keyframes wa-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .wa-tooltip {
+            position: absolute;
+            right: 68px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #fff;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: .82rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 4px 16px rgba(0,0,0,.15);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+        .wa-float:hover .wa-tooltip { opacity: 1; }
+        .wa-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 6px solid transparent;
+            border-left-color: #fff;
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: .1s; }
+        .reveal-delay-2 { transition-delay: .2s; }
+        .reveal-delay-3 { transition-delay: .3s; }
+        .reveal-delay-4 { transition-delay: .4s; }
+        .reveal-delay-5 { transition-delay: .5s; }
+
+        /* ===== UTILITIES ===== */
+        @media (max-width: 480px) {
+            section { padding: 64px 16px; }
+            .schedule-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .hero-stats { gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Demo Banner -->
+<div class="demo-banner">
+    <span>Esta es una demo creada por <strong>¿Y Tu Web?</strong></span>
+    <span class="sep">|</span>
+    <span>¿Quieres una página así?</span>
+    <a href="https://wa.me/5213312345678" target="_blank" rel="noopener">Cotiza gratis</a>
+    <a href="../index.html#demos" class="demo-back">&#8592; Volver</a>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            <!-- Dumbbell icon -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f44336" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11M6.5 17.5h11"/><rect x="2" y="8" width="4" height="8" rx="1"/><rect x="18" y="8" width="4" height="8" rx="1"/><rect x="6" y="5" width="1.5" height="14" rx=".75"/><rect x="16.5" y="5" width="1.5" height="14" rx=".75"/><line x1="7.5" y1="12" x2="16.5" y2="12"/></svg>
+            <span>Power <span class="accent">Fitness</span> GDL</span>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#clases">Clases</a>
+            <a href="#membresias">Membresías</a>
+            <a href="#galeria">Galería</a>
+            <a href="#ubicacion">Ubicación</a>
+            <a href="https://wa.me/5213312345678" target="_blank" rel="noopener" class="nav-cta">Clase Gratis</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menú">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="inicio">
+    <div class="hero-shape hero-shape-1"></div>
+    <div class="hero-shape hero-shape-2"></div>
+    <div class="hero-content">
+        <div class="hero-badge reveal">
+            <span class="dot"></span>
+            Nuevo: Clases al aire libre los sábados
+        </div>
+        <h1 class="reveal reveal-delay-1">
+            <span class="gradient-text">Transforma tu cuerpo,</span><br>
+            transforma tu vida
+        </h1>
+        <p class="reveal reveal-delay-2">
+            El gimnasio más completo de Zapopan. Equipamiento de clase mundial, entrenadores certificados y una comunidad que te impulsa a dar más.
+        </p>
+        <div class="hero-buttons reveal reveal-delay-3">
+            <a href="#membresias" class="btn btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+                Ver Membresías
+            </a>
+            <a href="https://wa.me/5213312345678?text=Hola%2C%20quiero%20agendar%20mi%20clase%20de%20prueba%20gratis" target="_blank" rel="noopener" class="btn btn-outline">
+                Clase de prueba gratis
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+        <div class="hero-stats reveal reveal-delay-4">
+            <div class="hero-stat">
+                <span class="num" data-count="2500">0</span>
+                <span class="label">Miembros activos</span>
+            </div>
+            <div class="hero-stat">
+                <span class="num" data-count="15">0</span>
+                <span class="label">Entrenadores</span>
+            </div>
+            <div class="hero-stat">
+                <span class="num" data-count="6">0</span>
+                <span class="label">Disciplinas</span>
+            </div>
+            <div class="hero-stat">
+                <span class="num" data-count="8">0</span>
+                <span class="label">Años de experiencia</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Classes Schedule -->
+<section id="clases">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="overline">Horarios</span>
+            <h2>Nuestras Clases</h2>
+            <p>Encuentra la disciplina perfecta para ti. Todas las clases incluidas desde el plan Plus.</p>
+        </div>
+        <div class="schedule-grid">
+            <!-- CrossFit -->
+            <div class="class-card reveal reveal-delay-1">
+                <div class="class-icon crossfit">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+                </div>
+                <div class="class-info">
+                    <h3>CrossFit</h3>
+                    <div class="days">Lunes / Miércoles / Viernes</div>
+                    <div class="class-times">
+                        <span class="time-tag">6:00 AM</span>
+                        <span class="time-tag">7:00 AM</span>
+                        <span class="time-tag">5:00 PM</span>
+                        <span class="time-tag">7:00 PM</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Spinning -->
+            <div class="class-card reveal reveal-delay-2">
+                <div class="class-icon spinning">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <div class="class-info">
+                    <h3>Spinning</h3>
+                    <div class="days">Martes / Jueves</div>
+                    <div class="class-times">
+                        <span class="time-tag">6:30 AM</span>
+                        <span class="time-tag">6:00 PM</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Yoga -->
+            <div class="class-card reveal reveal-delay-3">
+                <div class="class-icon yoga">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                </div>
+                <div class="class-info">
+                    <h3>Yoga</h3>
+                    <div class="days">Lun / Mié / Vie &bull; Sábado</div>
+                    <div class="class-times">
+                        <span class="time-tag">8:00 AM (L/M/V)</span>
+                        <span class="time-tag">9:00 AM (Sáb)</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Box -->
+            <div class="class-card reveal reveal-delay-1">
+                <div class="class-icon box">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M6 8H5a4 4 0 000 8h1"/><line x1="6" y1="12" x2="18" y2="12"/></svg>
+                </div>
+                <div class="class-info">
+                    <h3>Box</h3>
+                    <div class="days">Martes / Jueves / Sábado</div>
+                    <div class="class-times">
+                        <span class="time-tag">7:00 PM</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Zumba -->
+            <div class="class-card reveal reveal-delay-2">
+                <div class="class-icon zumba">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                </div>
+                <div class="class-info">
+                    <h3>Zumba</h3>
+                    <div class="days">Lunes / Miércoles</div>
+                    <div class="class-times">
+                        <span class="time-tag">6:00 PM</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Funcional -->
+            <div class="class-card reveal reveal-delay-3">
+                <div class="class-icon funcional">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                </div>
+                <div class="class-info">
+                    <h3>Funcional</h3>
+                    <div class="days">Lunes a Viernes</div>
+                    <div class="class-times">
+                        <span class="time-tag">5:00 AM</span>
+                        <span class="time-tag">8:00 AM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Memberships -->
+<section id="membresias">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="overline">Planes</span>
+            <h2>Elige tu Membresía</h2>
+            <p>Sin contratos forzosos. Cancela cuando quieras. Comienza hoy con tu clase de prueba gratis.</p>
+        </div>
+        <div class="pricing-grid">
+            <!-- Basica -->
+            <div class="pricing-card reveal reveal-delay-1">
+                <div class="pricing-header">
+                    <div class="pricing-name">Básica</div>
+                    <div class="pricing-price"><span class="currency">$</span>499</div>
+                    <div class="pricing-period">por mes</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Acceso a área de pesas
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Acceso a cardio
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Vestidores y regaderas
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Horario: 5 AM - 10 PM
+                    </li>
+                </ul>
+                <a href="https://wa.me/5213312345678?text=Hola%2C%20me%20interesa%20la%20membresía%20Básica" target="_blank" rel="noopener" class="pricing-btn pricing-btn-outline">
+                    Comenzar ahora
+                </a>
+            </div>
+            <!-- Plus -->
+            <div class="pricing-card featured reveal reveal-delay-2">
+                <div class="popular-badge">Más popular</div>
+                <div class="pricing-header">
+                    <div class="pricing-name">Plus</div>
+                    <div class="pricing-price"><span class="currency">$</span>799</div>
+                    <div class="pricing-period">por mes</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Todo lo de Básica
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        2 clases grupales por semana
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Evaluación física mensual
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Acceso a área funcional
+                    </li>
+                </ul>
+                <a href="https://wa.me/5213312345678?text=Hola%2C%20me%20interesa%20la%20membresía%20Plus" target="_blank" rel="noopener" class="pricing-btn pricing-btn-primary">
+                    Comenzar ahora
+                </a>
+            </div>
+            <!-- Premium -->
+            <div class="pricing-card reveal reveal-delay-3">
+                <div class="pricing-header">
+                    <div class="pricing-name">Premium</div>
+                    <div class="pricing-price"><span class="currency">$</span>1,099</div>
+                    <div class="pricing-period">por mes</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Todo lo de Plus
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Clases grupales ilimitadas
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Plan de nutrición personalizado
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#66bb6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        1 sesión de entrenamiento personal/mes
+                    </li>
+                </ul>
+                <a href="https://wa.me/5213312345678?text=Hola%2C%20me%20interesa%20la%20membresía%20Premium" target="_blank" rel="noopener" class="pricing-btn pricing-btn-outline">
+                    Comenzar ahora
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section id="galeria">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="overline">Instalaciones</span>
+            <h2>Conoce Nuestro Espacio</h2>
+            <p>Más de 2,000 m² equipados con lo mejor para tu entrenamiento.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-card reveal reveal-delay-1">
+                <div class="gallery-overlay"></div>
+                <div class="gallery-content">
+                    <div class="emoji">&#127947;&#65039;</div>
+                    <div class="label">Área de pesas</div>
+                </div>
+            </div>
+            <div class="gallery-card reveal reveal-delay-2">
+                <div class="gallery-overlay"></div>
+                <div class="gallery-content">
+                    <div class="emoji">&#127939;</div>
+                    <div class="label">Zona cardio</div>
+                </div>
+            </div>
+            <div class="gallery-card reveal reveal-delay-3">
+                <div class="gallery-overlay"></div>
+                <div class="gallery-content">
+                    <div class="emoji">&#128170;</div>
+                    <div class="label">Clase de CrossFit</div>
+                </div>
+            </div>
+            <div class="gallery-card reveal reveal-delay-1">
+                <div class="gallery-overlay"></div>
+                <div class="gallery-content">
+                    <div class="emoji">&#128690;</div>
+                    <div class="label">Spinning</div>
+                </div>
+            </div>
+            <div class="gallery-card reveal reveal-delay-2">
+                <div class="gallery-overlay"></div>
+                <div class="gallery-content">
+                    <div class="emoji">&#9889;</div>
+                    <div class="label">Área funcional</div>
+                </div>
+            </div>
+            <div class="gallery-card reveal reveal-delay-3">
+                <div class="gallery-overlay"></div>
+                <div class="gallery-content">
+                    <div class="emoji">&#128703;</div>
+                    <div class="label">Vestidores</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Location -->
+<section id="ubicacion">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="overline">Encuéntranos</span>
+            <h2>Horario y Ubicación</h2>
+            <p>Estamos en el corazón de Zapopan, fácil acceso y estacionamiento amplio.</p>
+        </div>
+        <div class="location-grid">
+            <div class="location-info">
+                <!-- Horarios -->
+                <div class="info-block reveal reveal-delay-1">
+                    <div class="info-block-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div>
+                        <h4>Horarios</h4>
+                        <ul class="hours-list">
+                            <li>
+                                <span class="day">Lunes a Viernes</span>
+                                <span>5:00 AM - 10:00 PM</span>
+                            </li>
+                            <li>
+                                <span class="day">Sábado</span>
+                                <span>7:00 AM - 3:00 PM</span>
+                            </li>
+                            <li>
+                                <span class="day">Domingo</span>
+                                <span>8:00 AM - 1:00 PM</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Dirección -->
+                <div class="info-block reveal reveal-delay-2">
+                    <div class="info-block-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                        <h4>Dirección</h4>
+                        <p>Blvd. Puerta de Hierro #456,<br>Zapopan, Jalisco</p>
+                    </div>
+                </div>
+                <!-- Teléfono -->
+                <div class="info-block reveal reveal-delay-3">
+                    <div class="info-block-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Teléfono</h4>
+                        <p><a href="tel:+523323456789" style="color: #ff7043;">(33) 2345-6789</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="map-wrapper reveal reveal-delay-2">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.4!2d-103.4!3d20.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDQyJzAwLjAiTiAxMDPCsDI0JzAwLjAiVw!5e0!3m2!1ses!2smx!4v1700000000000"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Ubicación de Power Fitness GDL">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div>
+            <h3 style="display: flex; align-items: center; gap: 8px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f44336" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11M6.5 17.5h11"/><rect x="2" y="8" width="4" height="8" rx="1"/><rect x="18" y="8" width="4" height="8" rx="1"/><rect x="6" y="5" width="1.5" height="14" rx=".75"/><rect x="16.5" y="5" width="1.5" height="14" rx=".75"/><line x1="7.5" y1="12" x2="16.5" y2="12"/></svg>
+                Power Fitness GDL
+            </h3>
+            <p style="margin-top: 8px;">
+                Transforma tu cuerpo, transforma tu vida. El gimnasio más completo de Zapopan con más de 8 años de experiencia formando campeones.
+            </p>
+            <div class="footer-socials">
+                <!-- Facebook -->
+                <a href="#" aria-label="Facebook">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <!-- Instagram -->
+                <a href="#" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+                <!-- TikTok -->
+                <a href="#" aria-label="TikTok">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48V13a8.28 8.28 0 005.58 2.15V11.7a4.83 4.83 0 01-3.77-1.24V6.69h3.77z"/></svg>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3>Enlaces</h3>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#clases">Clases</a></li>
+                <li><a href="#membresias">Membresías</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#ubicacion">Ubicación</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Contacto</h3>
+            <ul>
+                <li>Blvd. Puerta de Hierro #456</li>
+                <li>Zapopan, Jalisco</li>
+                <li style="margin-top:8px;"><a href="tel:+523323456789" style="color: #ff7043;">(33) 2345-6789</a></li>
+                <li><a href="https://wa.me/5213312345678" target="_blank" rel="noopener" style="color: #ff7043;">WhatsApp</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 Power Fitness GDL. Todos los derechos reservados. &mdash; Sitio demo creado por <a href="https://wa.me/5213312345678" style="color: #ff7043;">¿Y Tu Web?</a>
+    </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/5213312345678?text=Hola%2C%20quiero%20información%20sobre%20Power%20Fitness%20GDL" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+    <span class="wa-tooltip">¡Escríbenos!</span>
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ===== Navbar scroll effect =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ===== Hamburger menu =====
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('open');
+});
+// Close mobile menu on link click
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+    });
+});
+
+// ===== Scroll Reveal =====
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// ===== Counter animation =====
+const counters = document.querySelectorAll('.hero-stat .num');
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.dataset.count);
+            const duration = 2000;
+            const start = performance.now();
+            const animate = (now) => {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                // ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(eased * target);
+                el.textContent = current.toLocaleString('es-MX') + (target > 100 ? '+' : '+');
+                if (progress < 1) requestAnimationFrame(animate);
+            };
+            requestAnimationFrame(animate);
+            counterObserver.unobserve(el);
+        }
+    });
+}, { threshold: 0.5 });
+
+counters.forEach(c => counterObserver.observe(c));
+
+// ===== Smooth scroll for anchor links =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            const offset = 108; // navbar + demo banner
+            const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
