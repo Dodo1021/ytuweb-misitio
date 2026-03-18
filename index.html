@@ -34,7 +34,10 @@
   
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Schema.org JSON-LD -->
+  <!-- Canonical -->
+  <link rel="canonical" href="https://ytuweb.mx/">
+
+  <!-- Schema.org JSON-LD: LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,9 +45,16 @@
     "name": "¿Y Tu Web?",
     "url": "https://ytuweb.mx",
     "logo": "https://ytuweb.mx/assets/logo.png",
+    "image": "https://ytuweb.mx/assets/og-image.png",
     "description": "Páginas web profesionales para PyMEs en México. Desde $600/mes, sin pago inicial, con hosting incluido y bot de IA. Tu negocio en internet en 48 horas.",
     "priceRange": "$$",
-    "areaServed": ["Guadalajara", "Jalisco", "MX"],
+    "currenciesAccepted": "MXN",
+    "paymentAccepted": "Transferencia bancaria, SPEI",
+    "areaServed": [
+      { "@type": "City", "name": "Guadalajara" },
+      { "@type": "State", "name": "Jalisco" },
+      { "@type": "Country", "name": "México" }
+    ],
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "MX",
@@ -54,24 +64,74 @@
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "contactOption": "TollFree",
       "availableLanguage": "Spanish",
-      "areaServed": "MX"
+      "areaServed": "MX",
+      "email": "hola@ytuweb.mx"
     },
     "sameAs": [
       "https://www.facebook.com/ytuweb"
     ],
-    "offers": {
-      "@type": "Offer",
-      "name": "Página web profesional",
-      "price": "600",
-      "priceCurrency": "MXN",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
-        "price": "600",
-        "priceCurrency": "MXN",
-        "unitText": "mes"
-      }
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Planes de página web",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "Plan Esencial",
+          "description": "Página web responsive 5 secciones, hosting, formulario de contacto, Google My Business, Bot IA en Messenger",
+          "price": "600",
+          "priceCurrency": "MXN",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "600",
+            "priceCurrency": "MXN",
+            "unitText": "mes"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Plan Negocio",
+          "description": "Hasta 10 secciones, menú QR, link in bio, integración redes sociales, SEO básico",
+          "price": "900",
+          "priceCurrency": "MXN",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "900",
+            "priceCurrency": "MXN",
+            "unitText": "mes"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Plan Pro",
+          "description": "Blog SEO optimizado, correo profesional, reportes mensuales, prioridad en soporte",
+          "price": "1400",
+          "priceCurrency": "MXN",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "1400",
+            "priceCurrency": "MXN",
+            "unitText": "mes"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Schema.org JSON-LD: WebSite con SearchAction -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "¿Y Tu Web?",
+    "url": "https://ytuweb.mx",
+    "description": "Páginas web profesionales para PyMEs en México desde $600/mes",
+    "inLanguage": "es-MX",
+    "publisher": {
+      "@type": "Organization",
+      "name": "¿Y Tu Web?",
+      "url": "https://ytuweb.mx"
     }
   }
   </script>
