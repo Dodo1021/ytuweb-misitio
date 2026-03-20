@@ -1,9 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap
 Sitemap: https://ytuweb.mx/sitemap.xml
-
-# Bloquear carpetas de sistema (si aplica en el futuro)
-Disallow: /admin/
-Disallow: /.git/
