@@ -10,7 +10,7 @@
     <meta property="og:title" content="Diseño Web Guadalajara desde $600/mes para PyMEs, sin pago inicial | ¿Y Tu Web?">
     <meta property="og:description" content="Diseño web Guadalajara desde $600/mes, sin pago inicial y con bot de IA en Messenger incluido. Hecho para PyMEs y negocios físicos que no quieren perder ventas por responder tarde.">
     <meta property="og:type" content="website">
-    <meta property="og:updated_time" content="2026-05-06T15:00:00-06:00">
+    <meta property="og:updated_time" content="2026-05-07T15:00:00-06:00">
     <meta name="theme-color" content="#1877F2">
     <title>Diseño Web Guadalajara y PyMEs México desde $600/mes, sin pago inicial | ¿Y Tu Web?</title>
 
@@ -59,7 +59,7 @@
         "@type": "Place",
         "name": "Guadalajara, Jalisco, México"
       },
-      "dateModified": "2026-05-06",
+      "dateModified": "2026-05-07",
       "telephone": "+52-33-1410-2892",
       "currenciesAccepted": "MXN",
       "paymentAccepted": "Transferencia bancaria, SPEI",
@@ -200,20 +200,60 @@
     }
     </script>
 
+    <!-- Schema.org JSON-LD: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://ytuweb.mx/#organization",
+      "name": "¿Y Tu Web?",
+      "url": "https://ytuweb.mx",
+      "logo": "https://ytuweb.mx/assets/logo.png",
+      "image": "https://ytuweb.mx/assets/og-image.png",
+      "description": "Diseño web por suscripción para PyMEs en México desde $600/mes, sin pago inicial y con bot de IA en Messenger.",
+      "telephone": "+52-33-1410-2892",
+      "sameAs": [
+        "https://www.facebook.com/61586769857910"
+      ]
+    }
+    </script>
+
     <!-- Schema.org JSON-LD: WebSite -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
+      "@id": "https://ytuweb.mx/#website",
       "name": "¿Y Tu Web?",
       "url": "https://ytuweb.mx",
       "description": "Páginas web profesionales para PyMEs en México desde $600/mes",
       "inLanguage": "es-MX",
       "publisher": {
-        "@type": "Organization",
-        "name": "¿Y Tu Web?",
-        "url": "https://ytuweb.mx"
+        "@id": "https://ytuweb.mx/#organization"
       }
+    }
+    </script>
+
+    <!-- Schema.org JSON-LD: WebPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://ytuweb.mx/#webpage",
+      "url": "https://ytuweb.mx/",
+      "name": "Diseño Web Guadalajara y PyMEs México desde $600/mes, sin pago inicial | ¿Y Tu Web?",
+      "description": "Diseño web Guadalajara y México desde $600/mes para PyMEs. Sin pago inicial, hosting incluido y bot de IA en Messenger.",
+      "inLanguage": "es-MX",
+      "isPartOf": {
+        "@id": "https://ytuweb.mx/#website"
+      },
+      "about": {
+        "@id": "https://ytuweb.mx/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://ytuweb.mx/#breadcrumb"
+      },
+      "dateModified": "2026-05-07"
     }
     </script>
 
@@ -251,6 +291,7 @@
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
+      "@id": "https://ytuweb.mx/#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
